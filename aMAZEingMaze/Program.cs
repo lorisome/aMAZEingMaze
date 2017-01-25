@@ -33,6 +33,7 @@ namespace aMAZEingMaze
                 Console.Write("\n");
             }
 
+            //pick a random starting point along the path
             List<List<int>> completePath = new List<List<int>>();
             completePath = GetAllPathSquares(maze);
             Random rnd = new Random();
@@ -90,7 +91,7 @@ namespace aMAZEingMaze
                 {
                     Console.Clear();
                     Console.WriteLine();
-                    Console.WriteLine("A Winner is YOU!!");
+                    Console.WriteLine("Great Job!");
                     Console.ReadLine();
                 }
                 Console.Write("*");
