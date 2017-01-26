@@ -43,6 +43,8 @@ namespace aMAZEingMaze
             int innerLoop = completePath[randomStart][1];
             int[] victoryCoords = new int[] { 1, 22 };
 
+            Console.CursorVisible = false;
+
             Console.SetCursorPosition(victoryCoords[0], victoryCoords[1]);
             Console.Write("X");
             Console.SetCursorPosition(innerLoop, outerLoop);
