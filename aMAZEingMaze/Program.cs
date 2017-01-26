@@ -16,7 +16,24 @@ namespace aMAZEingMaze
 
         static void Main(string[] args)
         {
-
+            char characterToken = '*';
+            Console.Write("Hi! Welcome to the aMAZEing maze! Please select your character (such as *, #, O, b, etc.): ");
+            string userInput = Console.ReadLine();
+            if(userInput == "")
+            {
+                Console.WriteLine("Defaulting to * character.");
+                Console.ReadLine();
+            }
+            else
+            {
+                characterToken = userInput[0];
+            }
+            if(characterToken == ' ' || characterToken == 'X' || characterToken == '\u2588' || characterToken == '\u0020')
+            {
+                Console.WriteLine("That character is restricted. Defaulting to * character.");
+                characterToken = '*';
+                Console.ReadLine();
+            }
 
             DataConversion data = new DataConversion();
             List<string> convertedData = data.dataToStrings();
@@ -24,6 +41,7 @@ namespace aMAZEingMaze
 
 
             //Make maze from converted file
+            Console.Clear();
             for (int i = 0; i < maze.Count; i++)
             {
                 for (int j = 0; j < maze[i].Count; j++)
@@ -48,7 +66,7 @@ namespace aMAZEingMaze
             Console.SetCursorPosition(victoryCoords[0], victoryCoords[1]);
             Console.Write("X");
             Console.SetCursorPosition(innerLoop, outerLoop);
-            Console.Write("*");
+            Console.Write(characterToken);
 
             Console.SetCursorPosition(innerLoop, outerLoop);
 
@@ -96,7 +114,7 @@ namespace aMAZEingMaze
                     Console.WriteLine("Great Job!");
                     Console.ReadLine();
                 }
-                Console.Write("*");
+                Console.Write(characterToken);
                 Console.SetCursorPosition(innerLoop, outerLoop);
             }
         }
