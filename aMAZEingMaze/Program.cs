@@ -30,7 +30,7 @@ namespace aMAZEingMaze
             }
             if(characterToken == ' ' || characterToken == 'X' || characterToken == '\u2588' || characterToken == '\u0020')
             {
-                Console.WriteLine("That character is restricted. Defaulting to * character.");
+                Console.WriteLine("That character is restricted. Defaulting to * character. Press enter to continue.");
                 characterToken = '*';
                 Console.ReadLine();
             }
