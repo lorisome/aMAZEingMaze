@@ -141,7 +141,11 @@ namespace aMAZEingMaze
             Console.SetCursorPosition(victoryCoords[0], victoryCoords[1]);
             Console.Write("X");
             Console.SetCursorPosition(innerLoop, outerLoop);
+
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(characterToken);
+            Console.ResetColor();
+            
 
             Console.SetCursorPosition(innerLoop, outerLoop);
 
@@ -150,28 +154,28 @@ namespace aMAZEingMaze
                 ConsoleKeyInfo info = Console.ReadKey(true);
 
 
-                if (info.Key == ConsoleKey.A && !maze[outerLoop][innerLoop - 1])
+                if ((info.Key == ConsoleKey.A ||info.Key == ConsoleKey.LeftArrow) && !maze[outerLoop][innerLoop - 1])
                 {
 
                     Console.Write(mazechar);
                     innerLoop--;
 
                 }
-                if (info.Key == ConsoleKey.W && !maze[outerLoop - 1][innerLoop])
+                if ((info.Key == ConsoleKey.W || info.Key == ConsoleKey.UpArrow) && !maze[outerLoop - 1][innerLoop])
                 {
 
                     Console.Write(mazechar);
                     outerLoop--;
 
                 }
-                if (info.Key == ConsoleKey.D && !maze[outerLoop][innerLoop + 1])
+                if ((info.Key == ConsoleKey.D || info.Key == ConsoleKey.RightArrow) && !maze[outerLoop][innerLoop + 1])
                 {
 
                     Console.Write(mazechar);
                     innerLoop++;
 
                 }
-                if (info.Key == ConsoleKey.S && !maze[outerLoop + 1][innerLoop])
+                if ((info.Key == ConsoleKey.S || info.Key == ConsoleKey.DownArrow) && !maze[outerLoop + 1][innerLoop])
                 {
 
                     Console.Write(mazechar);
@@ -188,8 +192,12 @@ namespace aMAZEingMaze
                     Console.WriteLine();
                     Console.WriteLine("Great Job!");
                     Console.ReadLine();
+                    //this should probably end the program - the player is still "in the maze" at this point, and if they hit enter to submit the readline
+                    //and continue in the direction of the exit they will go out of bounds and crash the program (out of range on the position list).
                 }
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(characterToken);
+                Console.ResetColor();
                 Console.SetCursorPosition(innerLoop, outerLoop);
             }
         }
