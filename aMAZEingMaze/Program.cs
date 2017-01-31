@@ -40,6 +40,81 @@ namespace aMAZEingMaze
             List<List<bool>> maze = data.MakeMaze(convertedData);
 
 
+            //------------------------------------random ending point code--------------------------------------//
+            //pick a random ending point around the edge of the board that is connected to the path in some way
+            //this will assume that the board is a perfect rectangle- all rows must have the same number of columns
+            //this assumes that the input maze is at a minimum 3x3, and has at least one square adjacent to the outside wall that is not solid
+            //this assumes that all spaces on the path in the maze connect to one another - if there's a  break, the player and exit could be in different sections
+
+            //by default the [1, 22] coordinate of the wall is open in the maze.  this closes it.  if we do nothing else, this will make the game unwinnable.
+            maze[22][1] = true;
+            //future iterations with actually random mazes will need to remove this, this is just for the single default input we currently have.
+
+            int LastRowSquare = maze[0].Count -1;
+            int LastColSquare = maze.Count -1;
+            bool successfulExit = false;
+            int exitXPosition = 0;
+            int exitYPosition = 0;
+
+            Random rng = new Random();
+            do
+            {
+                //select a wall, 0 = top, 1 = bottom, 2 = left, 3 = right
+                //then pick a random space along that wall, check if the adjacent square is open
+                //if open, break out of the loop, otherwise restart and try again
+                int selectedWall = rng.Next(5);
+
+                if(selectedWall < 2)
+                {
+                    exitXPosition = rng.Next(LastRowSquare + 1);
+                    if (selectedWall == 0)
+                    {
+                        exitYPosition = 0;
+                        if (maze[1][exitXPosition] == false)
+                        {
+                            successfulExit = true;
+                        }
+                    }
+                    else
+                    {
+                        exitYPosition = LastColSquare;
+                        if (maze[LastColSquare - 1][exitXPosition] == false)
+                        {
+                            successfulExit = true;
+                        }
+                    }
+                }
+                else
+                {
+                    exitYPosition = rng.Next(LastColSquare + 1);
+                    if (selectedWall == 2)
+                    {
+                        exitXPosition = 0;
+                        if (maze[exitYPosition][1] == false)
+                        {
+                            successfulExit = true;
+                        }
+                    }
+                    else
+                    {
+                        exitXPosition = LastRowSquare;
+
+                        if (maze[exitYPosition][LastRowSquare - 1] == false)
+                        {
+                            successfulExit = true;
+                        }
+                    }
+                }
+            }
+            while (successfulExit == false);
+
+            //if converting this to a function, will need to return two ints (possibly as an object)
+
+            //turn the outside square that the exit is on from wall to open
+            maze[exitYPosition][exitXPosition] = false;
+            
+            //--------------------------------end random ending point code--------------------------------------//
+
             //Make maze from converted file
             Console.Clear();
             for (int i = 0; i < maze.Count; i++)
@@ -59,7 +134,7 @@ namespace aMAZEingMaze
 
             int outerLoop = completePath[randomStart][0];
             int innerLoop = completePath[randomStart][1];
-            int[] victoryCoords = new int[] { 1, 22 };
+            int[] victoryCoords = new int[] { exitXPosition, exitYPosition }; //modified to have the new exit position
 
             Console.CursorVisible = false;
 

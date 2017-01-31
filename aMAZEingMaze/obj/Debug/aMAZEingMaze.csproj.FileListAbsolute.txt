@@ -1,0 +1,7 @@
+C:\Users\Bob\Desktop\LoriMaze\aMAZEingMaze\aMAZEingMaze\bin\Debug\aMAZEingMaze.exe.config
+C:\Users\Bob\Desktop\LoriMaze\aMAZEingMaze\aMAZEingMaze\bin\Debug\data.txt
+C:\Users\Bob\Desktop\LoriMaze\aMAZEingMaze\aMAZEingMaze\bin\Debug\aMAZEingMaze.exe
+C:\Users\Bob\Desktop\LoriMaze\aMAZEingMaze\aMAZEingMaze\bin\Debug\aMAZEingMaze.pdb
+C:\Users\Bob\Desktop\LoriMaze\aMAZEingMaze\aMAZEingMaze\obj\Debug\aMAZEingMaze.csprojResolveAssemblyReference.cache
+C:\Users\Bob\Desktop\LoriMaze\aMAZEingMaze\aMAZEingMaze\obj\Debug\aMAZEingMaze.exe
+C:\Users\Bob\Desktop\LoriMaze\aMAZEingMaze\aMAZEingMaze\obj\Debug\aMAZEingMaze.pdb
